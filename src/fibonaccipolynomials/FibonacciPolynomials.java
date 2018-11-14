@@ -9,69 +9,33 @@ package fibonaccipolynomials;
  *
  * @author Brendan
  */
-import java.util.ArrayList;
-import java.lang.Math;
-import java.lang.Double;
+import java.awt.*;
+import javax.swing.*;
 public class FibonacciPolynomials {
     
     public static void main(String[] args) {
         
-        int n = 19;
-        double value = 1;
+        DefaultController c = new DefaultController();
+        DefaultModel m = new DefaultModel();
         
-        ArrayList<Factor> factors = new ArrayList<>();
+        PrimaryView v = new PrimaryView(c);
         
-        for(int i = 1; i <=n/2; ++i){
-            //System.out.println("________");
-            Factor currentFactor = new Factor(i,n);
+        c.addModel(m);
+        c.addView(v);
+        
+        EventQueue.invokeLater(() -> {
+        
+            JFrame window = new JFrame();
             
-            factors.add(currentFactor);
-            
-            //System.out.println(currentFactor);
-            //System.out.println(currentFactor.getValue());
+            window.add(v);
 
-            value = value*currentFactor.getValue();
-        }
-        
-        //System.out.println(value);
-        
-        int numFactors = factors.size();
-        //boolean primeFactorization = false;
-        ArrayList<Factor> primeFactors;
-        int prime = 37;
-        
-        long superSetMax = (int)Math.pow(2, numFactors);
-        
-        for(int i = 1; i <= superSetMax; ++i){
+            window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            window.setResizable(false);
+            window.setPreferredSize(new Dimension(800,800));
+            window.pack();
+            window.setVisible(true);
             
-            //System.out.println("____");
-            primeFactors = new ArrayList();
-            Double currentValue = new Double(1);
-            String binary = Integer.toBinaryString(i);
-            //System.out.println(binary);
-            for(int j = 0; j <binary.length(); ++j){
-                
-                if(binary.charAt(j) == '1'){
-                    primeFactors.add(factors.get(j));
-                    currentValue = currentValue * factors.get(j).getValue();
-                    
-                }
-            }
-            
-            long finalValue = currentValue.intValue();
-            //System.out.println(currentValue);
-            
-            if(finalValue == prime){
-                System.out.println("_________");
-                System.out.println(currentValue);
-                System.out.println(finalValue);
-                for(Factor f : primeFactors){
-                    System.out.println(f);
-                }
-            }
-
-            
-        }
+        });
 
 
     }
