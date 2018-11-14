@@ -75,16 +75,10 @@ public class PrimaryView extends JPanel implements AbstractView{
         outputArea = new JTextArea("");
         outputArea.setEditable(false);
         outputArea.setMargin(new Insets(10,10,10,10));
-        //outputArea.setPreferredSize(new Dimension(700,400));
+        outputArea.setFont(outputArea.getFont().deriveFont(15f));
         
-        
-       pane = new JScrollPane(outputArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        pane = new JScrollPane(outputArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         pane.setPreferredSize(new Dimension(700,400));
-        
-        //pane.add(new JScrollBar());
-        //pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        //outputPanel.add(pane);
         
         this.add(pane,BorderLayout.CENTER);
     }
