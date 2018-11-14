@@ -98,8 +98,11 @@ public class DefaultModel extends AbstractModel{
             }
             
             Integer subsetProduct = currentValue.intValue();
+            Integer subsetProductMinusOne = currentValue.intValue() +1;
             
-            if(subsetProduct.equals(factor)){
+            
+            if(subsetProduct.equals(factor) || subsetProductMinusOne.equals(factor)){
+                
                 subsetExists = true;
                 output += "\n____________________________________\n";
                 output += "Actual Value: " + currentValue + "\n";
