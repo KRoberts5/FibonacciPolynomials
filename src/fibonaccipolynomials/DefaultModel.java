@@ -86,6 +86,11 @@ public class DefaultModel extends AbstractModel{
             Double currentValue = new Double(1);
             String subsetFactorization = "";
             String binary = Integer.toBinaryString(i);
+            
+            while(binary.length() < numFactors){
+                binary = "0" + binary;
+            }
+            
             for(int j = 0; j <binary.length(); ++j){
                 
                 if(binary.charAt(j) == '1'){
