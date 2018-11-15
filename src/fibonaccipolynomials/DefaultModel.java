@@ -77,9 +77,9 @@ public class DefaultModel extends AbstractModel{
         
         int numFactors = factors.size();
         ArrayList<Factor> factorSubset = new ArrayList();
-        long superSetMax = (long)Math.pow(2, numFactors);
+        long powerSetMax = (long)Math.pow(2, numFactors);
         
-        for(int i = 1; i < superSetMax; ++i){
+        for(int i = 1; i < powerSetMax; ++i){
             
             
             factorSubset = new ArrayList();
