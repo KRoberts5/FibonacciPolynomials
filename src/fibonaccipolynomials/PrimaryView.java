@@ -21,6 +21,7 @@ public class PrimaryView extends JPanel implements AbstractView{
     
     private JTextField input1;
     private JTextField input2;
+    private JTextField input3;
     private JButton button;
     private JTextArea outputArea;
     private JScrollPane pane;
@@ -54,6 +55,13 @@ public class PrimaryView extends JPanel implements AbstractView{
         
         inputPanel.add(label2);
         inputPanel.add(input2);
+        
+        JLabel label3 = new JLabel("Margin of Error:");
+        label3.setHorizontalAlignment(SwingConstants.CENTER);
+        input3 = new JTextField();
+        
+        inputPanel.add(label3);
+        inputPanel.add(input3);
         
         this.add(inputPanel, BorderLayout.PAGE_START);
         
@@ -89,13 +97,22 @@ public class PrimaryView extends JPanel implements AbstractView{
             String input = input1.getText();
             int n = Integer.parseInt(input);
             
+            int errorMargin = 0;
+            if(input3.getText().isEmpty()){
+                errorMargin = 1;
+            }
+            else{
+                errorMargin = Integer.parseInt(input3.getText());
+            }
+            
+            
             if(input2.getText().isEmpty()){
                 controller.findNthPolynomial(n);
             }
             else{
                 input = input2.getText();
                 int factor = Integer.parseInt(input);
-                controller.findPartialFactorization(n, factor);
+                controller.findPartialFactorization(n, factor,errorMargin); 
             }
             
             
