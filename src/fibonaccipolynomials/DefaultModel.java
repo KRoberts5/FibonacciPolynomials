@@ -14,13 +14,13 @@ public class DefaultModel extends AbstractModel{
     
     private Integer nthPolynomial;
     private Double value;
-    private String fullFactorization;
+    private StringBuilder fullFactorization;
     private ArrayList<Factor> factors;
     
     public DefaultModel(){
         nthPolynomial = 0;
         value = new Double(1);
-        fullFactorization = "";
+        fullFactorization = new StringBuilder();
         factors = new ArrayList();
     }
     public void setNthPolynomial(Integer n){
@@ -30,11 +30,11 @@ public class DefaultModel extends AbstractModel{
             
             nthPolynomial = n;
             value = new Double(1);
-            fullFactorization = "";
+            fullFactorization = new StringBuilder();
             factors = new ArrayList();
             for(int i = 1; i <=n/2; ++i){
                 Factor currentFactor = new Factor(i,n);
-                fullFactorization += currentFactor.toString() + "  ";
+                fullFactorization.append(currentFactor.toString() + "  ");
                 factors.add(currentFactor);
                 value = value*currentFactor.getValue();
             }
@@ -50,7 +50,7 @@ public class DefaultModel extends AbstractModel{
     }
     public void setPartialFactorization(HashMap<String,Integer> values){
         
-        String output = "";
+        StringBuilder output = new StringBuilder();
         
         Integer n = values.get(DefaultController.N);
         Integer factor = values.get(DefaultController.FACTOR);
@@ -61,19 +61,19 @@ public class DefaultModel extends AbstractModel{
         if(!n.equals(nthPolynomial)){
             nthPolynomial = n;
             value = new Double(1);
-            fullFactorization = "";
+            fullFactorization = new StringBuilder();
             factors = new ArrayList();
             for(int i = 1; i <=n/2; ++i){
                 Factor currentFactor = new Factor(i,n);
-                fullFactorization += currentFactor.toString() + "  ";
+                fullFactorization.append(currentFactor.toString() + "  ");
                 factors.add(currentFactor);
                 value = value*currentFactor.getValue();
             }
         }
         
         long finalValue = value.longValue();
-        output = "F" + nthPolynomial + ": " + finalValue + "\n";
-        output += "Full Factorization: " + fullFactorization + "\n";
+        output.append("F" + nthPolynomial + ": " + finalValue + "\n");
+        output.append("Full Factorization: " + fullFactorization + "\n");
         
         
         int numFactors = factors.size();
@@ -85,7 +85,7 @@ public class DefaultModel extends AbstractModel{
             
             factorSubset = new ArrayList();
             Double currentValue = new Double(1);
-            String subsetFactorization = "";
+            StringBuilder subsetFactorization = new StringBuilder();
             String binary = Integer.toBinaryString(i);
             
             while(binary.length() < numFactors){
@@ -97,7 +97,7 @@ public class DefaultModel extends AbstractModel{
                 if(binary.charAt(j) == '1'){
                     
                     factorSubset.add(factors.get(j));
-                    subsetFactorization += factors.get(j).toString() + "  ";
+                    subsetFactorization.append(factors.get(j).toString() + "  ");
                     currentValue = currentValue * factors.get(j).getValue();
                     
                 }
@@ -111,15 +111,15 @@ public class DefaultModel extends AbstractModel{
             if(subsetProduct.equals(factor)){
                 
                 subsetExists = true;
-                output += "\n____________________________________\n";
-                output += "Actual Value: " + currentValue + "\n";
-                output += "Factorization: " + subsetFactorization;
+                output.append("\n____________________________________\n");
+                output.append("Actual Value: " + currentValue + "\n");
+                output.append("Factorization: " + subsetFactorization);
             }
             else if((subsetProductMinusMargin <= factor) && (subsetProductPlusMargin>= factor)){
                 subsetExists = true;
-                output += "\n____________________________________\n";
-                output += "Actual Value: " + currentValue + "\n";
-                output += "Factorization: " + subsetFactorization;
+                output.append("\n____________________________________\n");
+                output.append("Actual Value: " + currentValue + "\n");
+                output.append("Factorization: " + subsetFactorization);
             }
             
             
@@ -127,9 +127,9 @@ public class DefaultModel extends AbstractModel{
         }
         
         if(!subsetExists){
-            output += "No Such Subset Exists";
+            output.append("No Such Subset Exists");
         }
         
-        firePropertyChange(DefaultController.PARTIAL_FACTORIZATION,null,output);
+        firePropertyChange(DefaultController.PARTIAL_FACTORIZATION,null,output.toString());
     }
 }
