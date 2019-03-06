@@ -23,9 +23,8 @@ public class DefaultModel extends AbstractModel{
         fullFactorization = new StringBuilder();
         factors = new ArrayList();
     }
-    public void setNthPolynomial(Integer n){
-        
-        
+    
+    private String generateFactors(Integer n){
         if(!n.equals(nthPolynomial)){
             
             nthPolynomial = n;
@@ -44,6 +43,13 @@ public class DefaultModel extends AbstractModel{
         long finalValue = value.longValue();
         String output = "F" + nthPolynomial + ": " + finalValue + "\n";
         output += "Full Factorization: " + fullFactorization;
+        
+        return output;
+    }
+    public void setNthPolynomial(Integer n){
+        
+        String output = generateFactors(n);
+        
             
         firePropertyChange(DefaultController.NTH_POLYNOMIAL,null,output);
         
@@ -58,23 +64,7 @@ public class DefaultModel extends AbstractModel{
         
         boolean subsetExists = false;
         
-        if(!n.equals(nthPolynomial)){
-            nthPolynomial = n;
-            value = new Double(1);
-            fullFactorization = new StringBuilder();
-            factors = new ArrayList();
-            for(int i = 1; i <=n/2; ++i){
-                Factor currentFactor = new Factor(i,n);
-                fullFactorization.append(currentFactor.toString() + "  ");
-                factors.add(currentFactor);
-                value = value*currentFactor.getValue();
-            }
-        }
-        
-        long finalValue = value.longValue();
-        output.append("F" + nthPolynomial + ": " + finalValue + "\n");
-        output.append("Full Factorization: " + fullFactorization + "\n");
-        
+        output.append(generateFactors(n));
         
         int numFactors = factors.size();
         ArrayList<Factor> factorSubset = new ArrayList();
