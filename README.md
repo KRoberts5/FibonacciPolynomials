@@ -24,18 +24,32 @@ This class provides the primary computation. The state of the object is represen
 ### generateFactors
 
 Accepts an integer, n, which represents which Fibonacci number is requested. The trigonometric factors are then generated.
-As each factor is generated, it is multiplied to the product of all previous factors. A string is generated to represent the 
+As each factor is generated, its real value is multiplied to the product of all previous factors. A string is generated to represent the 
 Fibonacci number, the number's value, and the full list of factors.
 
 ### setNthPolynomial
 
-Calls generateFactors() with an integer value retrieved from input. The string is sent to the controller so that a view class can
-output the data.
+This method is called whenever the user only provides input for which a polynomial they want.
+The method calls generateFactors() with an integer value retrieved from input. The string is sent to the controller so that a view class can output the data.
 
 ### setPartialFactorization
 
-Performs the same steps as setNthPolynomial.
+This method is called whenever the user provides an input for both Nth Polynomial and Factor.
+The nth polynomial represents which Fibonacci number the user would like to generate. Factor represents the value to search for when 
+generating the products of subsets.
+To start, this method performs the same steps as setNthPolynomial.
 Once the full factorization has been generated, the program generates all subsets of the factors and their appropriate values.
+
+To generate every subset, I utilize a binary string to represent which factors are present in a given subset. For example, 
+if we were computing the 7th Fibonacci number, we would have 3 trigonometric factors. Since each factor can either be included or 
+excluded, the total number of subsets is 2^3 = 8. If we represent each factor as a binary digit, we can visually determine which 
+factors are included in our subset. For instance, 110 in this example would include the first and second factors. To determine the 
+total product of a subset, I simply iterate through the binary string. If there is a 1 in the current position, I multiply the
+factor's value to the current product value of the subset. If the current position contains a 0, I ignore it. 
+
+Once the product has been generated, I compare it to the factor value. If the product falls within a specified range of the factor value, we append that subsets data to the final output. If the product falls outside the range, we ignore it. It should be noted that the range is set to 1 by default. If the user specifies a value for "Error of Margin," this value will be used to determine the range.
+
+Finally, the output string, containing the data for all desired subsets, is sent to the controller so that a view can handle it.
 
 ## AbstractController
 
