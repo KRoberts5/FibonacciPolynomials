@@ -59,7 +59,7 @@ public class DefaultModel extends AbstractModel{
         StringBuilder output = new StringBuilder();
         
         Integer n = values.get(DefaultController.N);
-        Integer factor = values.get(DefaultController.FACTOR);
+        Integer desiredProduct = values.get(DefaultController.DESIRED_PRODUCT);
         Integer errorMargin = values.get(DefaultController.ERROR_MARGIN);
         
         boolean subsetExists = false;
@@ -98,14 +98,14 @@ public class DefaultModel extends AbstractModel{
             Integer subsetProductPlusMargin = subsetProduct + errorMargin;
             
             
-            if(subsetProduct.equals(factor)){
+            if(subsetProduct.equals(desiredProduct)){
                 
                 subsetExists = true;
                 output.append("\n____________________________________\n");
                 output.append("Actual Value: " + currentValue + "\n");
                 output.append("Factorization: " + subsetFactorization);
             }
-            else if((subsetProductMinusMargin <= factor) && (subsetProductPlusMargin>= factor)){
+            else if((subsetProductMinusMargin <= desiredProduct) && (subsetProductPlusMargin>= desiredProduct)){
                 subsetExists = true;
                 output.append("\n____________________________________\n");
                 output.append("Actual Value: " + currentValue + "\n");
