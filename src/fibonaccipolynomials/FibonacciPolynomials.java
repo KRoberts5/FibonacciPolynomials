@@ -31,7 +31,7 @@ public class FibonacciPolynomials {
 
             window.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             window.setResizable(false);
-            window.setPreferredSize(new Dimension(800,800));
+            window.setPreferredSize(new Dimension(1000,1000));
             window.pack();
             window.setVisible(true);
             

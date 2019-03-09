@@ -49,7 +49,7 @@ public class PrimaryView extends JPanel implements AbstractView{
         inputPanel.add(label1);
         inputPanel.add(input1);
         
-        JLabel label2 = new JLabel("Factor:");
+        JLabel label2 = new JLabel("Desired Product:");
         label2.setHorizontalAlignment(SwingConstants.CENTER);
         input2 = new JTextField();
         
@@ -111,8 +111,8 @@ public class PrimaryView extends JPanel implements AbstractView{
             }
             else{
                 input = input2.getText();
-                int factor = Integer.parseInt(input);
-                controller.findPartialFactorization(n, factor,errorMargin); 
+                int desiredProduct = Integer.parseInt(input);
+                controller.findPartialFactorization(n, desiredProduct,errorMargin); 
             }
             
             

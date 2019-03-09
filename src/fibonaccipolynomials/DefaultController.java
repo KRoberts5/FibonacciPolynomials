@@ -10,6 +10,7 @@ public class DefaultController extends AbstractController{
     public static final String NTH_POLYNOMIAL = "NthPolynomial";
     public static final String PARTIAL_FACTORIZATION = "PartialFactorization";
     public static final String FACTOR = "Factor";
+    public static final String DESIRED_PRODUCT = "DesiredProduct";
     public static final String N = "N";
     public static final String ERROR_MARGIN = "ErrorMargin";
     
@@ -19,11 +20,11 @@ public class DefaultController extends AbstractController{
         setModelProperty(NTH_POLYNOMIAL, n);
     }
     
-    public void findPartialFactorization(int n, int factor, int errorMargin){
+    public void findPartialFactorization(int n, int desiredProduct, int errorMargin){
         
         HashMap<String,Integer> values = new HashMap();
         values.put(N, n);
-        values.put(FACTOR, factor);
+        values.put(DESIRED_PRODUCT, desiredProduct);
         values.put(ERROR_MARGIN, errorMargin);
         
         setModelProperty(PARTIAL_FACTORIZATION,values);
