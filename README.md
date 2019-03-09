@@ -33,17 +33,17 @@ This class provides the primary computation. The state of the object is represen
 3. fullFactorization - A string that represents the complete trigonmetric factorization
 4. factors - An array list that contains all the factor objects for the given Fibonacci number.
 
-### generateFactors
+### generateFactors()
 
 Accepts an integer, n, which represents which Fibonacci number is requested. The trigonometric factors are then generated.
 As each factor is generated, its real value is multiplied to the product of all previous factors. A string is generated to represent all desired data  (the Fibonacci number, the number's value, and the full list of factors).
 
-### setNthPolynomial
+### setNthPolynomial()
 
 This method is called whenever the user only provides input for which a polynomial they want.
 The method calls generateFactors() with an integer value retrieved from input. The string is sent to the controller so that a view class can output the data.
 
-### setPartialFactorization
+### setPartialFactorization()
 
 This method is called whenever the user provides an input for both Nth Polynomial and Factor.
 The nth polynomial represents which Fibonacci number the user would like to generate. Desired product represents the value to search for when generating the products of subsets.
