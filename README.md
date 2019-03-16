@@ -1,7 +1,7 @@
 # FibonacciPolynomials
 
 This project was designed to help a Jacksonville State University Professor gather data for a research project.
-The objective was to create a program that could computate the trigonometric factors of any given fibonacci number.
+The objective was to create a program that could generate the trigonometric factors of any given fibonacci number.
 Once the factors are computed, we can view the products of all the subsets of factors.
 This information is valuable because it indicates if coupling exists.
 
@@ -35,20 +35,20 @@ This class provides the primary computation. The state of the object is represen
 
 ### generateFactors()
 
-Accepts an integer, n, which represents which Fibonacci number is requested. The trigonometric factors are then generated.
+This method is invoked by setNthPolynomial() and setPartialFactorization(). The method accepts an integer, n, which represents which Fibonacci number is requested. The trigonometric factors are then generated.
 As each factor is generated, its real value is multiplied to the product of all previous factors. A string is generated to represent all desired data  (the Fibonacci number, the number's value, and the full list of factors).
 
 ### setNthPolynomial()
 
-This method is called whenever the user only provides input for which a polynomial they want.
-The method calls generateFactors() with an integer value retrieved from input. The string is sent to the controller so that a view class can output the data.
+This method is called whenever the user only provides input for which Fibonacci number they want.
+The method calls generateFactors() with an integer value retrieved from input. The string, received from generateFactors(), is sent to the controller so that a view class can output the data.
 
 ### setPartialFactorization()
 
 This method is called whenever the user provides an input for both Nth Polynomial and Factor.
 The nth polynomial represents which Fibonacci number the user would like to generate. Desired product represents the value to search for when generating the products of subsets.
 To start, this method performs the same steps as setNthPolynomial.
-Once the full factorization has been generated, the program generates all subsets of the factors and their appropriate values.
+Once the full factorization has been generated, the program generates all subsets of the factors and their products.
 
 To generate every subset, I utilize a binary string to represent which factors are present in a given subset. For example, 
 if we were computing the 7th Fibonacci number, we would have 3 trigonometric factors. Since each factor can either be included or 
@@ -91,7 +91,7 @@ Called by the view whenever a user only inputs a value for "Nth Polynomial." The
 
 ### findPartialFactorization()
 
-This method is called by the view whenever a user inputs values for both "Nth Polynomial" and "Desired Factor." The controller then packs three values ( n, desired product, and error margin) into a hashmap and calls the Default Model's findPatialFactorization() method.
+This method is called by the view whenever a user inputs values for both "Nth Polynomial" and "Desired Product." The controller then packs three values ( n, desired product, and margin of error) into a hashmap and calls the Default Model's findPatialFactorization() method.
 
 ## Primary View
 
